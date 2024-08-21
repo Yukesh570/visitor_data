@@ -4,10 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Visitor</title>
+    <script>
+        async function redirectToVideoFeed() {
+            try {
+                // Make a POST request to the Django view
+                const response = await fetch("{% url 'capture' %}", {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'  // Include the CSRF token
+                    }
+                });
+               
+            } catch (error) {
+                console.error('Request failed:', error);
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Register Visitor</h1>
-    <form method="POST" action="{% url 'register' %}"enctype="multipart/form-data">
+    <form method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
         {% csrf_token %}
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -30,7 +47,13 @@
         <label for="created_at">Visit Date:</label>
         <input type="date" id="created_at" name="created_at" required><br><br>
 
+        <!-- Display video feed -->
+        <img src="{% url 'video_feed' %}" width="640" height="480" alt="Video Feed">
         
+        <!-- Button to redirect to video feed -->
+        <button type="button" onclick="redirectToVideoFeed()">Click</button>
+
+        <!-- Register button -->
         <button type="submit">Register</button>
     </form>
 </body>

@@ -4,6 +4,10 @@ from .models import *
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import *
+import cv2
+from .detect import *
+import datetime
+
 from .detect import run_detection
 # Create your views here.
 
@@ -38,4 +42,14 @@ def register(request):
             message={'detail':'User with this email already exists'}
             return Response(message,status=status.HTTP_400_BAD_REQUEST)
 
-        
+
+@api_view(['GET'])
+def capture(request):
+    try:
+        img_cap()  # Call the function to capture an image
+
+        # Return a success response
+        return Response({'detail': 'Image captured successfully.'}, status=status.HTTP_200_OK)
+    except Exception as e:
+        print(f'Error: {e}')  # Print the error for debugging
+        return Response({'detail': 'An error occurred. Please try again.'}, status=status.HTTP_400_BAD_REQUEST)
