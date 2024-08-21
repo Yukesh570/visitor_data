@@ -1,7 +1,8 @@
 import cv2
 from django.http import StreamingHttpResponse
-
+import os
 import threading
+from django.conf import settings
 
 import datetime
 latest_img=None
@@ -56,10 +57,11 @@ def run_detection():
 
 
 def img_cap():
+    images=os.path.join(settings.MEDIA_ROOT,'images')
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     filename = f"face_detected_{timestamp}.jpg"
-    cv2.imwrite(filename, latest_img)
-
+    file_path = os.path.join(images, filename)
     # Save the image
-    
+    cv2.imwrite(file_path, latest_img)
+
     print(f"Image saved as {filename}")
