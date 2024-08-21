@@ -41,3 +41,6 @@ def detection():
 
 
     cap.release()
+def run_detection():
+    detection_thread = threading.Thread(target=detection)
+    detection_thread.start()

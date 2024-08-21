@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Visitor</title>
+</head>
+<body>
+    <h1>Register Visitor</h1>
+    <form method="POST" action="{% url 'register' %}"enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="phone_no">Phone Number:</label>
+        <input type="text" id="phone_no" name="phone_no" required><br><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="no_of_person">Number of Persons:</label>
+        <input type="number" id="no_of_person" name="no_of_person" required><br><br>
+
+        <label for="purpose">Purpose of Visit:</label>
+        <textarea id="purpose" name="purpose" required></textarea><br><br>
+
+        <label for="created_at">Visit Date:</label>
+        <input type="date" id="created_at" name="created_at" required><br><br>
+
+        
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
