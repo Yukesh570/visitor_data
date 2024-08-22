@@ -23,7 +23,7 @@
             width: 100%;
             max-width: 600px;
             box-sizing: border-box;
-            height: 1000px; 
+            height: 1100px; 
             overflow: auto; /* Add this if you want to handle overflow content */
             position: relative; /* For modal positioning */
         }
@@ -31,6 +31,8 @@
         h1 {
             text-align: center;
             color: #333;
+            font-size: 24px; /* Adjust the font size to make it smaller */
+
         }
 
         label {
@@ -41,12 +43,12 @@
 
         input, textarea {
             width: 100%;
-            padding: 10px;
+            padding: 5px;
             margin-bottom: 20px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
-            font-size: 16px;
+            font-size: 20px;
         }
 
         .button-container {
@@ -200,7 +202,7 @@
             <textarea id="purpose" name="purpose" required></textarea>
 
             <!-- Display video feed -->
-            <img src="{% url 'video_feed' %}" width="600" height="440" alt="Video Feed">
+            <img src="{% url 'video_feed' %}" width="540" height="380" alt="Video Feed">
 
             <!-- Button container -->
             <div class="button-container">
