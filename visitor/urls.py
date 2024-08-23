@@ -10,5 +10,6 @@ urlpatterns=[
     path('video_feed/', detect.video_feed, name='video_feed'),
     path('capture', views.capture, name='capture'),
     path('latestimage', views.serve_latest_image, name='latestimage'),
+    path('picture', views.latest_picture, name='picture'),
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

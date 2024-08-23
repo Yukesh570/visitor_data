@@ -3,6 +3,7 @@ from django.http import StreamingHttpResponse
 import os
 import threading
 from django.conf import settings
+from django.http import HttpResponse
 
 import datetime
 latest_img=None
@@ -42,7 +43,6 @@ def detection():
         cv2.destroyAllWindows()
 
 
-
 def video_feed(request):
     return StreamingHttpResponse(detection(),
         content_type='multipart/x-mixed-replace; boundary=frame')
@@ -60,6 +60,6 @@ def img_cap():
     filename = f"face_detected_{timestamp}.jpg"
     file_path = os.path.join(images, filename)
     # Save the image
-    cv2.imwrite(file_path, cropped_img)
+    cv2.imwrite(file_path, latest_img)
 
     print(f"Image saved as {filename}")

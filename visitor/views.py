@@ -33,7 +33,16 @@ def get_latest_image():
     latest_image=max(image_files,key=os.path.getmtime)
     # print('url',latest_image)
     return latest_image
-    
+
+
+def latest_picture(request):
+    image=get_latest_image()
+    if image is not None:
+        # _,encode_img=cv2.imencode('.jpg',image)
+        response=HttpResponse(image)
+        return response
+    else:
+        return HttpResponse(status=404)  
 
 def serve_latest_image(request):
     latest_image_path = get_latest_image()
@@ -48,7 +57,7 @@ def serve_latest_image(request):
                 print('------',image_base64)
                 # Returning the base64 image data as an HTML response for demonstration
                 html = f'<img src="data:image/jpeg;base64,{image_base64}" />'
-                return HttpResponse(image_base64)
+                return HttpResponse(html)
         
         except IOError:
             return HttpResponse("Error: Unable to read the image file.", status=500)
