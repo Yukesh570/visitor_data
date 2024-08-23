@@ -8,5 +8,5 @@ class Visitor_data(models.Model):
     email=models.EmailField(max_length=200, null=True,blank=True)
     no_of_person=models.IntegerField(null=True , blank=True)
     purpose=models.CharField(max_length=200,null=True,blank=True)
-    image=models.ImageField(upload_to='images/',null=False)
+    image=models.TextField(null=True, blank=True)
     # created_at=models.DateTimeField(null=True, blank=True)

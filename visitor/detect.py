@@ -6,8 +6,9 @@ from django.conf import settings
 
 import datetime
 latest_img=None
+cropped_img=None
 def detection():
-    global latest_img
+    global latest_img,cropped_img
     f_cascade=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     cap =cv2.VideoCapture(0)
     image_counter = 0
@@ -22,9 +23,12 @@ def detection():
             
 
             for(x,y,w,h) in face:
-                cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),1)
-                cv2.putText(img,"person", (x + w - 60, y + 45), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0), 1)
+                padding = 90  # Increase the padding as needed
+                width=150
+                cv2.rectangle(img, (x - 153, y - 93), (x + w + 153, y + h + 93), (255, 0, 0), 2)    
+                # cv2.putText(img,"person", (x + w - 60, y + 45), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0), 1)
                 face_region = img[y:y + h, x:x + w]
+                cropped_img=img[y - padding:y + h + padding, x - width:x + w + width]
 
             _, encoded_img = cv2.imencode('.jpg', img)
 
@@ -41,7 +45,7 @@ def detection():
 
 def video_feed(request):
     return StreamingHttpResponse(detection(),
-                                content_type='multipart/x-mixed-replace; boundary=frame')
+        content_type='multipart/x-mixed-replace; boundary=frame')
     
 
 
@@ -56,6 +60,6 @@ def img_cap():
     filename = f"face_detected_{timestamp}.jpg"
     file_path = os.path.join(images, filename)
     # Save the image
-    cv2.imwrite(file_path, latest_img)
+    cv2.imwrite(file_path, cropped_img)
 
     print(f"Image saved as {filename}")
