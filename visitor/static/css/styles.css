@@ -1,7 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
+    
+    margin: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,19 +13,21 @@ body {
     background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 800px;
     box-sizing: border-box;
     height: 700px; 
+    
     overflow: auto; /* Add this if you want to handle overflow content */
     display: flex; /* Use flexbox to align items */
-    justify-content: space-between; /* Add space between the form and the video feed */
-}
+    justify-content: center; /* Center children vertically */}
 
 h1 {
-    text-align: center;
+    text-align: right;
     color: #333;
+    margin-right: 350px; /* Adjust this value to move it left */
+
     font-size: 24px; /* Adjust the font size to make it smaller */
     width: 100%;
 }
@@ -54,7 +57,11 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 10px; /* Space between buttons */
+    margin-right: 100px;
+
     margin-top: 20px;
+    width: 160%; /* Ensure it takes the full width of its parent */
+
 }
 
 button {
@@ -63,7 +70,7 @@ button {
     border-radius: 12px; /* Make buttons curved */
     background-color: #007bff;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
 }
 

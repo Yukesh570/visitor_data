@@ -16,34 +16,44 @@
 
 <script>
 
-function saveinputdata(){
-    const fields = ["name", "phone_no", "address", "email", "no_of_person", "purpose"];
-    fields.forEach(inputdata=>{
-        const inputelement=document.getElementById(inputdata)
-        if(inputelement){
-            localStorage.setItem(inputdata,inputelement.value)
+// function saveinputdata(){
+//     const fields = ["name", "phone_no", "address", "email", "no_of_person", "purpose"];
+//     fields.forEach(inputdata=>{
+//         const inputelement=document.getElementById(inputdata)
+//         if(inputelement){
+//             localStorage.setItem(inputdata,inputelement.value)
 
-        }
-    })
-}
-function restoreinputdata(){
-    const fields = ["name", "phone_no", "address", "email", "no_of_person", "purpose"];
-    fields.forEach(inputdata=>{
-        const savedata = localStorage.getItem(inputdata);
-        console.log('i am here=====')
-        if (savedata){
-            document.getElementById(inputdata).value=savedata
-            console.log("hello world++++++++++")
-    }
-    })
+//         }
+//     })
+// }
+
+// function removedata(){
+//     const fields = ["name", "phone_no", "address", "email", "no_of_person", "purpose"];
+//     fields.forEach(inputdata=>{
+//         const inputelement=document.getElementById(inputdata)
+//         if(inputelement){
+//             localStorage.removeItem(inputdata)
+
+//         }
+//     })
+// }
+// function restoreinputdata(){
+//     const fields = ["name", "phone_no", "address", "email", "no_of_person", "purpose"];
+//     fields.forEach(inputdata=>{
+//         const savedata = localStorage.getItem(inputdata);
+//         console.log('i am here=====')
+//         if (savedata){
+//             document.getElementById(inputdata).value=savedata
+//             console.log("hello world++++++++++")
+//     }
+//     })
     
-}
-window.onload=restoreinputdata;
-
-function reloadpage(){
-    saveinputdata()
-    // window.location.reload();
-}
+// }
+// window.onload=restoreinputdata;
+// function reloadpage(){
+//     saveinputdata()
+//     // window.location.reload();
+// }
 
 function refreshImage() {
     const imgElement = document.querySelector('.video-container img');
@@ -55,10 +65,10 @@ function refreshImage() {
         
         imgElement.src = newSrc;
 
-        imgElement.onerror =funtion()
-        {
+        imgElement.onerror =function()
+            {
             imgElement.src="{%url 'upload' %}"
-        }
+            }
     }
 }
 setInterval(refreshImage, 3000);
@@ -103,7 +113,6 @@ async function redirectToVideoFeed() {
                     // Automatically hide the modal after 1 second
                     setTimeout(() => {
                         modal.style.display = "none";
-                        reloadpage()
                     }, 1000); // 1000 milliseconds = 1 second
                 } else {
                     // Handle any errors (e.g., response not OK)
@@ -154,7 +163,8 @@ function sayHello() {
                     <button type="button" onclick="sayHello()">Take Picture</button>
 
                     <!-- Register button -->
-                    <button type="submit">Register</button>
+                    <button type="submit" >Register</button>'
+            
                 </div>
                 
                 
