@@ -54,6 +54,11 @@ function refreshImage() {
         const newSrc = "{% url 'picture' %}?t=" + timestamp;
         
         imgElement.src = newSrc;
+
+        imgElement.onerror =funtion()
+        {
+            imgElement.src="{%url 'upload' %}"
+        }
     }
 }
 setInterval(refreshImage, 3000);
@@ -157,9 +162,11 @@ function sayHello() {
         </div>
 
         <div class="video-container">
-            <!-- Display video feed -->
-            <img src="{% url 'picture' %}" alt="picture">
+            <img src="{% url 'picture' %}" alt="picture" onerror="this.src='{% url 'upload' %}';">
         </div>
+        <!-- <div class="video-container">
+            <img src="{% url 'upload' %}" alt="upload">
+        </div> -->
     </div>
 
     <!-- The Modal -->

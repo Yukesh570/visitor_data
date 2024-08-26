@@ -46,6 +46,22 @@ def latest_picture(request):
         return response
     else:
         return HttpResponse(status=404)  
+    
+
+def uploadpicture(request):
+    image_pattern=os.path.join(settings.MEDIA_ROOT,'images','*.png')
+    image_files=glob.glob(image_pattern)
+    latest_image=max(image_files,key=os.path.getmtime)
+
+    if latest_image is not None:
+        with open(latest_image,'rb') as img_file:
+            image_data=img_file.read()
+        response=HttpResponse(image_data,content_type="image/png")
+        response['Content-Disposition'] = 'inline; filename="upload.png"' #tells the browser to display the image inline in the browser window rather than prompting for a download.
+
+        return response
+    else:
+        return HttpResponse(status=404) 
 
 def serve_latest_image(request):
     latest_image_path = get_latest_image()

@@ -76,6 +76,23 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+
+}
+.video-container2 {
+    flex: 1; /* Take up available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 20%; /* Adjust the max-width as needed */
+    max-height: 20%; /* Adjust the max-height as needed */
+}
+
+/* Optionally, adjust the image size directly */
+.video-container2 img {
+    width: 100%; /* Scale the image to fit the container */
+    height: auto; /* Maintain aspec=t ratio */
+    max-width: 40px; /* Limit the maximum width */
+    max-height: 30px; /* Limit the maximum height */
 }
 
 .video-container img {

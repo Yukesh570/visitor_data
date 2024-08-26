@@ -11,5 +11,6 @@ urlpatterns=[
     path('capture', views.capture, name='capture'),
     path('latestimage', views.serve_latest_image, name='latestimage'),
     path('picture', views.latest_picture, name='picture'),
+    path('upload', views.uploadpicture, name='upload'),
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
