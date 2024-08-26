@@ -17,7 +17,7 @@ from django.utils import timezone
 import json
 # from io import BytesIO
 import base64
-from .detect import run_detection
+# from .detect import run_detection
 from django.core.files.uploadedfile import InMemoryUploadedFile
 
 # Create your views here.
@@ -38,8 +38,11 @@ def get_latest_image():
 def latest_picture(request):
     image=get_latest_image()
     if image is not None:
-        # _,encode_img=cv2.imencode('.jpg',image)
-        response=HttpResponse(image)
+        with open(image,'rb') as img_file:
+            image_data=img_file.read()
+        response=HttpResponse(image_data,content_type="image/jpeg")
+        response['Content-Disposition'] = 'inline; filename="latest.jpg"' #tells the browser to display the image inline in the browser window rather than prompting for a download.
+
         return response
     else:
         return HttpResponse(status=404)  
@@ -63,6 +66,17 @@ def serve_latest_image(request):
             return HttpResponse("Error: Unable to read the image file.", status=500)
     
     return HttpResponse("Error: No image file found.", status=404)
+
+def delete_all_file():
+    image_pattern = os.path.join(settings.MEDIA_ROOT, 'images', '*.jpg')
+
+    filesdelete=glob.glob(image_pattern)
+    for file_path in filesdelete:
+        if os.path.isfile(file_path):
+            os.remove(file_path)
+            print(f"Deleted: {file_path}")
+        else:
+            print(f"File not found: {file_path}")
 
 
 @api_view(['POST'])
@@ -115,6 +129,7 @@ def register(request):
         print('External API response status:', response.status_code)
         print('External API response content:', response.content)
         if response.status_code==200:
+            delete_all_file()
             return Response(serializers.data,status=status.HTTP_201_CREATED)
         else:
             return Response(

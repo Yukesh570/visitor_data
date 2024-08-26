@@ -1,7 +1,6 @@
 import cv2
 from django.http import StreamingHttpResponse
 import os
-import threading
 from django.conf import settings
 from django.http import HttpResponse
 
@@ -14,8 +13,10 @@ def detection():
     cap =cv2.VideoCapture(0)
     image_counter = 0
     try:
-        while True:
-            _, img =cap.read()
+        while cap.isOpened():
+            ret, img =cap.read()
+            if not ret:
+                break
             latest_img = img  # Store the latest image in the global variable
 
             gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
@@ -36,22 +37,15 @@ def detection():
             frame = encoded_img.tobytes()
             yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-    except KeyboardInterrupt:
-        print("Streaming interrupted by user.")
+            print('========running=======')
     finally:
         cap.release()
-        cv2.destroyAllWindows()
-
 
 def video_feed(request):
     return StreamingHttpResponse(detection(),
         content_type='multipart/x-mixed-replace; boundary=frame')
     
 
-
-def run_detection():
-    detection_thread = threading.Thread(target=detection)
-    detection_thread.start()
 
 
 def img_cap():
