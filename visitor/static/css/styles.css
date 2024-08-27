@@ -41,6 +41,8 @@ h1 {
     display: block;
     margin-bottom: 8px;
     color: #555;
+    font-size: 20px; /* Adjust the font size to make it smaller */
+
 }
 
 .form-container input, .form-container textarea {
