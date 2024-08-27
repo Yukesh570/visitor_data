@@ -17,7 +17,7 @@ def detection():
             ret, img =cap.read()
             if not ret:
                 break
-            latest_img = img  # Store the latest image in the global variable
+            latest_img = img  
 
             gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
             face =f_cascade.detectMultiScale(gray,1.1,4)
