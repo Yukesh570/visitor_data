@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-duk^3v^(ys(t+t9$iupk1-)p$_xwt7lg#ug01#&5&%ozy%$n65
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['173.249.56.158']
 
 
 # Application definition
@@ -75,10 +75,20 @@ WSGI_APPLICATION = 'detection_Project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": 'detection-db',
+        "HOST": 'localhost',
+        "PORT": '5432',
+        "USER": 'yukesh',
+        "PASSWORD": 'android18)',
     }
 }
 
