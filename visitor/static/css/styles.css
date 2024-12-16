@@ -194,8 +194,13 @@ button:hover {
 h1 {
     font-size: 36px; /* Increase font size */
     font-weight: bold; /* Make the text bold */
- 
+    color: #000000; /* Add a color for better contrast */
+    margin-left: 30px; /* Adjust this value to move it to the right */
+    text-transform: uppercase; /* Make the text uppercase */
+
+
 }
+
 
 
 
