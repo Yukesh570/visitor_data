@@ -10,9 +10,10 @@ cropped_img=None
 def detection():
     global latest_img,cropped_img
     f_cascade=cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-    # cap =cv2.VideoCapture(f"rtsp://admin:12345)@192.168.2.64:554/cam/realmonitor?channel=1&subtype=0")  //for dahua camera
-    cap = cv2.VideoCapture()
-    cap.open("rtsp://admin:12345@192.168.2.64:554/Streaming/channels/1")   #for HIKVISION
+    cap =cv2.VideoCapture(0)
+    # cap =cv2.VideoCapture(f"rtsp://admin:12345)@192.168.2.64:554/cam/realmonitor?channel=1&subtype=0")  #for dahua camera
+    # cap = cv2.VideoCapture()
+    # cap.open("rtsp://admin:12345@192.168.2.64:554/Streaming/channels/1")   #for HIKVISION
 
     if not cap.isOpened():
         raise IOError("webcam cannot be opened")

@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #e7e4e4;
     
     margin: 250px;
     display: flex;
@@ -10,22 +10,25 @@ body {
 }
 
 .container {
-    background-color: #ffffff;
+    background-color: #e7e7e7;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px 20px rgba(80, 80, 80, 0.2);
+    width: 150%;
+    max-width: 900px;
     box-sizing: border-box;
-    height: 700px; 
-    
+    height: 750px;
     overflow: auto; /* Add this if you want to handle overflow content */
     display: flex; /* Use flexbox to align items */
-    justify-content: center; /* Center children vertically */}
+    justify-content: center; /* Center children vertically */
+    
+    /* Add an outer line */
+    border: 1px solid #000000; /* Adjust the thickness and color as needed */
+}
 
 h1 {
     text-align: right;
-    color: #333;
+    color: #000000;
     margin-right: 350px; /* Adjust this value to move it left */
 
     font-size: 24px; /* Adjust the font size to make it smaller */
@@ -40,7 +43,7 @@ h1 {
 .form-container label {
     display: block;
     margin-bottom: 8px;
-    color: #555;
+    color: #000000;
     font-size: 20px; /* Adjust the font size to make it smaller */
 
 }
@@ -187,3 +190,14 @@ button:hover {
     border-radius: 4px;
     box-sizing: border-box; /* Ensure padding is included */
 }
+
+h1 {
+    font-size: 36px; /* Increase font size */
+    font-weight: bold; /* Make the text bold */
+ 
+}
+
+
+
+
+

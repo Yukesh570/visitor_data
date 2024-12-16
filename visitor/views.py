@@ -122,9 +122,9 @@ def register(request):
 
         visitor=Visitor_data.objects.create(
             name=data['name'],
-            phone_no=data['phone_no'],
-            address=data['address'],
-            email=data['email'],
+            phone_no=data.get('phone_no',None),
+            address=data.get('address',None),
+            email=data.get('email',None),
             no_of_person=data['no_of_person'],
             purpose=data['purpose'],
             # created_at=created_at,
@@ -148,17 +148,25 @@ def register(request):
             delete_all_file()
             return Response(serializers.data,status=status.HTTP_201_CREATED)
         else:
+            delete_all_file()
+
             return Response(
+                
                 {"detail":"Failed to save data to external API."},
+
                 status=status.HTTP_400_BAD_REQUEST
+
             )
         # return Response(serializers.data, status=status.HTTP_201_CREATED)
 
         # return render(request, 'index.html')
 
     except Exception as e:
+            delete_all_file()
+
             print('------',data)
-            message={'detail':'User with this email already exists'}
+            message = {'detail': str(e)}  # Include exception message for better debugging
+
             return Response(message,status=status.HTTP_400_BAD_REQUEST)
 
 
