@@ -139,7 +139,7 @@ def register(request):
         print('[[[data]]]',serializers.data)
         
         # print('data=',json_data)
-        api_url="https://dev.saraloms.com/api/user/save_visitors"
+        api_url="https://podamibe.saraloms.com/api/user/save_visitors"
         headers={'Content-Type':'application/json'}
         response=requests.post(api_url,json=serializers.data,headers=headers)
         print('External API response status:', response.status_code)

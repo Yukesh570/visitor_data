@@ -86,7 +86,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": 'detection-db',
         "HOST": 'localhost',
-        "PORT": '5433',
+        "PORT": '5432',
         "USER": 'yukesh',
         "PASSWORD": 'android18)',
     }
