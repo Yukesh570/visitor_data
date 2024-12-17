@@ -30,20 +30,20 @@ def detection():
 
             
 
-            for(x,y,w,h) in face:
-                padding = 90  # Increase the padding as needed
-                width=150
-                cv2.rectangle(img, (x - 153, y - 93), (x + w + 153, y + h + 93), (255, 0, 0), 2)    
-                # cv2.putText(img,"person", (x + w - 60, y + 45), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0), 1)
-                face_region = img[y:y + h, x:x + w]
-                cropped_img=img[y - padding:y + h + padding, x - width:x + w + width]
+            # for(x,y,w,h) in face:
+            #     padding = 90  # Increase the padding as needed
+            #     width=150
+            #     cv2.rectangle(img, (x - 153, y - 93), (x + w + 153, y + h + 93), (255, 0, 0), 2)    
+            #     # cv2.putText(img,"person", (x + w - 60, y + 45), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 255, 0), 1)
+            #     face_region = img[y:y + h, x:x + w]
+            #     cropped_img=img[y - padding:y + h + padding, x - width:x + w + width]
 
             _, encoded_img = cv2.imencode('.jpg', img)
 
             frame = encoded_img.tobytes()
             yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-            print('========running=======')
+            # print('========running=======')
     finally:
         cap.release()
 
